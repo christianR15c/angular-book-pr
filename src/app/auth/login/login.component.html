@@ -1,0 +1,28 @@
+<div class="flex m-auto h-screen justify-center mt-28">
+    <div class="md:w-5/12 h-fit rounded-xl shadow-xl px-8 py-16 flex justify-center items-center">
+        <form (ngSubmit)="submit()" #myForm="ngForm" class="flex flex-col gap-3">
+            <h1 class="text-center text-2xl font-bold pb-6 text-slate-500 uppercase">
+                Login
+            </h1>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" class="p-2 rounded w-full focus:outline-none focus:ring focus:border-slate-200 border border-slate-200" [(ngModel)]="form.email" #email="ngModel" required />
+            </div>
+            <div *ngIf="loginEmailValidation" [hidden]="email.valid" class="px-4 py-1 bg-red-300 text-red-800">
+                Email field must be valid
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" class="p-2 rounded w-full focus:outline-none focus:ring focus:border-slate-200 border border-slate-200" [(ngModel)]="form.password" #password="ngModel" required />
+            </div>
+            <div *ngIf="loginPasswordValidation" [hidden]="password.valid" class="px-4 py-1 bg-red-300 text-red-800">
+                Password must be valid
+            </div>
+            <div class="pt-6">
+                <button [disabled]="loginIsLoading()" type="submit" class="p-2 w-full bg-slate-200 hover:bg-slate-100">
+          {{ loginIsLoading() ? "Loading ..." : "Submit" }}
+        </button>
+            </div>
+        </form>
+    </div>
+</div>
